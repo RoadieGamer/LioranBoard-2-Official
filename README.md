@@ -1,3 +1,5 @@
+This is BETA version. It might be unstable, please use and download at your own risk. 
+
 This is the ONLY official LioranBoard 2 source. Please be careful downloading it from any other sources.
 
 Find LioranBoard official documentation at https://lioranboard.ca/docs2  
