@@ -65,6 +65,14 @@ This section allows the extension to install a new deck into the LB2 receiver.  
 
 The installed decks can use commands created in the same extension, or any other extension.  However, if the user uninstalls an extension used by the deck defined in this section, the related commands will not work in the receiver.  This may cause unexpected behavior or cause the receiver to crash.
 
+Add these keys to your exported deck json if you want LB to perform additional checks when user tries to install the extension: 
+
+"lioranboard_version":"2.00.0"	Check if lioranboard version is working fine
+"transmitter":true		Check if the transmitter is connected
+"obswebsocket":"4.9.1"		Check if OBS Main is connect and correct version
+"donot_include_deck":false	Check if the deck should be create, if the deck does not exists it doesnt matter, this is if you want an optionnal deck or hidden deck
+"extension_triggers":["TRG1","TRG",...]		These are all the Extension triggers that should happen, trigger pull data will include "path" for the path of where the extension was.
+
 ---------------------------------
 - 4. Troubleshooting Extensions -
 ---------------------------------
