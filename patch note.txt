@@ -34,4 +34,3 @@
 	Trigger Pull Data command can now retrieve Outcome 1-10 Info
 - Fixed ini files not properly getting .ini appended when the file name is 3 letters long [Christina]
 - Made commands that have default JSON code in text boxes taller so the code can be seen [wolbee]
-- Added command to send Twitch Announcements. [Silverlink]
