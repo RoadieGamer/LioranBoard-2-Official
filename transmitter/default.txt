@@ -1,5 +1,5 @@
 <!--For Extension info, read How to make extensions.txt in Extension folder-->
-<!--Transmitter V5.08-->
+<!--Transmitter V6.00-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -264,6 +264,13 @@ button:active{
 <!--Your external script will be inserted here-->
 <!--<script src="example.js"></script>-->
 <!--INSERT PART 1-->
+<!--Color Converter external-->
+<div id="content-Color_Converter" class="tab-pane" title="Color Converter"><div><p>Color Converter extension is installed. </p></div>
+<!--
+ * @name: Color Converter, @version: 1.0, @author: Christinna#9031, @source: https://christinna9031.itch.io/
+ * -->
+</div>
+<!--Color Converter external end-->
  
 <!--Twitch Triggers-->
 <div class="tab-pane" id="content-triggers" role="tabpanel" title="Twitch Triggers" data-type="default">
@@ -674,7 +681,7 @@ function LBCommands() {
 }
 
 // Twitch client ID to use for Twitch API requests
-const TWITCH_CLIENT_ID = "tpqy40pm79e00s63cqusqepvhwqz1n";
+let TWITCH_CLIENT_ID = "tpqy40pm79e00s63cqusqepvhwqz1n";
 // init object with all available LB command methods
 const LB = new LBCommands ()
 // Expose websocket client, pubsub client and logIt function for global access
@@ -975,7 +982,7 @@ function LBTestTriggers() {
             ? 4
             : 1;
       const gifterName = subForm.anongift.checked
-        ? 'Anonymous user'
+        ? 'Anonymous User'
         : generateName();
       const amount = parseInt(form.subGiftAmount.value) || 1;
       const pullData = {
@@ -1245,7 +1252,8 @@ function LBTestTriggers() {
     LB.trigger(type, data);
     LB.alert(message);
   }
-}  
+}
+  
 // load LB connection params from storage
 function load_connection() {
   const ls = JSON.parse(localStorage.getItem('lsParams')) || {};
@@ -1313,6 +1321,7 @@ function connecttoboard() {
     sendExtensionCommands(); // Get Twitch list and connect to Pubsub
 
     await LB.getTwitchList().then((data) => {
+      TWITCH_CLIENT_ID = data.twitch_list.clientId ? data.twitch_list.clientId : TWITCH_CLIENT_ID
       p.twitchList = data.twitch_list;
       connectPubSubserver();
     });
@@ -1408,6 +1417,21 @@ const browser = (function () {
 function sendExtensionCommands() {
 // You LioranBoard extension commands will be inserted here
 /*INSERT PART 2*/
+//[Color Converter command]
+
+LB.extCommand('Color Converter', 3355443, 52, {
+  type: ['Convert Type', 19, 'Hex', 1, ['Color Name','Hex','RGB','HSL','HSV','Random',]],
+  variable: ['Save Variable', 14, '',1.5],
+  global: ['Set as Global', 2, false, 0.8],
+  colorName: ['Color Name', 14, '',1.5],
+  hex: ['Color Hex', 14, '',1.1],
+  red: ['Red/H', 14, '',0.7],
+  green: ['Green/S', 14, '',0.7],
+  blue: ['Blue/L/V', 14, '',0.7],
+})
+
+
+//[Color Converter command end]
 }
 
 // Connect to PubSub
@@ -1524,6 +1548,13 @@ function LBExtensionReceived(hook, LioranBoardJSON) {
       break;
 //You hooks will be inserted here
 /*INSERT PART 3*/
+//[Color Converter hook]
+case "Color Converter":{
+    const p = LioranBoardJSON
+	LBColorConverter(p.type,p.variable,p.colorName,p.hex,p.red,p.green,p.blue,p.global,p.FromButton )  
+}break
+
+//[Color Converter hook end]
    }
 }
 
@@ -1630,6 +1661,128 @@ function LBDebugPost(type, msg) {
 
 // Your main script will be inserted here
 /*INSERT PART 4*/
+//[Color Converter script]
+
+function LBColorConverter(type, variable, colorName, hex, red, green, blue, global, buttonID) {
+    let int
+    let rgb
+
+    switch (type) {
+        case "Color Name": {
+            hex = standardize_color(colorName)
+            if (colorName != 'black' && hex == '#000000') {
+                {
+                    LB.alert("Color Converter Error: Invalid color name.");
+                    return
+                }
+            }
+            rgb = convertColor(hex)
+        }
+        break;
+    case "Hex": {
+        rgb = convertColor(hex)
+    }
+    break;
+    case "RGB": {
+        red = parseInt(red.replace(/\D/g, ''));
+        green = parseInt(green.replace(/\D/g, ''));
+        blue = parseInt(blue.replace(/\D/g, ''));
+        rgb = [red, green, blue]
+    }
+    break;
+    case "HSL": {
+        const h = red
+        const s = green / 100
+        const l = blue / 100
+        rgb = hsl2rgb(h, s, l)
+    }
+    break;
+    case "HSV": {
+        const h = red
+        const s = green / 100
+        const l = blue / 100
+        rgb = hsv2rgb(h, s, l)
+    }
+    break;
+    case "Random": {
+        int = RandomInt(4278190080, 4294967295)
+    }
+    break;
+    }
+
+    if (type != "Random") {
+        if (!CheckValidRGB(rgb[0], rgb[1], rgb[2])) {
+            LB.alert("Color Converter Error: Invalid color input.");
+            return
+        }
+        int = rgbtoint(rgb[0], rgb[1], rgb[2])
+    }
+    const button = (!global) ? buttonID : 'global'
+    LB.setVariable(variable, int, button)
+
+    function rgbtoint(red, green, blue) {
+        const r = red & 0xFF;
+        const g = green & 0xFF;
+        const b = blue & 0xFF;
+        let rgb = (r) + (g << 8) + (b << 16);
+        rgb = rgb + 4278190080
+        return rgb
+    }
+
+    function standardize_color(str) {
+        const ctx = document.createElement('canvas').getContext('2d');
+        ctx.fillStyle = str;
+        return ctx.fillStyle;
+    }
+
+    function convertColor(hexa) {
+        let chunks = [];
+        var tmp, i;
+        let c = hexa.search("#")
+        if (c != -1) {
+            hexa = hexa.substr(1)
+        }
+        if (hexa.length === 3) {
+            tmp = hexa.split("");
+            for (i = 0; i < 3; i++) {
+                chunks.push(parseInt(tmp[i] + "" + tmp[i], 16));
+            }
+        } else if (hexa.length === 6) {
+            tmp = hexa.match(/.{2}/g);
+            for (i = 0; i < 3; i++) {
+                chunks.push(parseInt(tmp[i], 16));
+            }
+        } else {
+            chunks = [-1, -1, -1]
+        }
+        return chunks;
+    }
+
+    function hsl2rgb(h, s, l) {
+        let a = s * Math.min(l, 1 - l);
+        let f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+    }
+
+    function hsv2rgb(h, s, v) {
+        let f = (n, k = (n + h / 60) % 6) => v - v * s * Math.max(Math.min(k, 4 - k, 1), 0);
+        // return [f(5),f(3),f(1)];       
+        return [Math.round(f(5) * 255), Math.round(f(3) * 255), Math.round(f(1) * 255)];
+
+    }
+
+    function RandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function CheckValidRGB(r, g, b) {
+        if ((r >= 0 && r <= 255) && (g >= 0 && g <= 255) && (b >= 0 && b <= 255)) return true
+        return false
+    }
+
+}
+
+//[Color Converter script end]
 
 </script>
   <script src="https://cdn.jsdelivr.net/gh/LioranBoard/LioranBoard-2-Websocket@main/dist/lb-websocket.min.js"></script>
