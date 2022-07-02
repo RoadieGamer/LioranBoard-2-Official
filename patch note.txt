@@ -1,5 +1,8 @@
 2022.3.1 Community Edition (July 2nd 2022)
 
+Hotfix:
+- Fixed a bug where "Latest Version" isn't selected by default.
+
 Important Security Patch:
 - Disabled file saving/modification/deletion from folders outside of your main LB directory.
   - The LB Dev team discovered that previous versions of LioranBoard 2 allowed any files on your computer
