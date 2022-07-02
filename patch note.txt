@@ -3,8 +3,8 @@
 Important Security Patch:
 - Disabled file saving/modification/deletion from folders outside of your main LB directory.
   - The LB Dev team discovered that previous versions of LioranBoard 2 allowed any files on your computer
-    to be modified, even if they were outside of the main LB directory. This meant that previously, anyone
-    could delete/modify your decks, or any important files on your PC, with a single command.
+to be modified, even if they were outside of the main LB directory. This meant that previously, anyone
+could delete/modify your decks, or any important files on your PC, with a single command.
 
 New Features:
 - Added new Trigger Pull Data value outcome_amount for predictions (returns the amount of outcomes) [Christina]
@@ -22,7 +22,8 @@ Improvements:
   - Added YouTube test triggers
   - Changed favicon to our new CE butterfly [wolbee]
   - Note: Twitch test triggers will ONLY work if you're using this new Transmitter with LB version 2022.3.1 or higher
-- Changed how YouTube retrieves access tokens, and patched a potential security issue to prevent any other programs from accessing it and potentially depleting the project quota [Christina]
+- Changed how YouTube retrieves access tokens, and patched a potential security issue to prevent any other programs
+from accessing it and potentially depleting the project quota [Christina]
 
 UI Changes:
 - none
@@ -46,7 +47,7 @@ Bug Fixes:
 New Features:
 - Delete key works in text boxes [Roadie]
 - Added option to select a secondary Twitch Client ID [Silverlink] - this is an optional setting for now,
-  but will be required in the future, which will require you to relink Twitch accounts and re-duplicate channel points made with LioranBoard
+but will be required in the future, which will require you to relink Twitch accounts and re-duplicate channel points made with LioranBoard
 - Transmitter updated to V6. You can keep using V5 if you do not use the new secondary Twitch Client ID [Christina]
 - Added the option to reveal Transmitter in File Explorer [Christina]
 
