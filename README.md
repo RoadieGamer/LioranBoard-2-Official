@@ -3,7 +3,7 @@
 [![Discord](https://img.shields.io/discord/699319482442711072.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/dXez8Zh)
 [![Patreon](https://img.shields.io/endpoint.svg?label=Patreon&url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dlb2devs%26type%3Dpatrons&style=flat)](https://patreon.com/lb2devs)
 
-This is the ONLY official LioranBoard 2 source. Please be careful downloading it from any other sources.
+This is the ONLY official LioranBoard 2 CE source. Please be careful downloading it from any other sources.
 
 ## What is LioranBoard?
 LioranBoard 2 is a fully customizable Stream Deck that lets your Twitch and YouTube Live audience control and interact with your stream.  
