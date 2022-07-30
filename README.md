@@ -1,14 +1,14 @@
-# LioranBoard 2
-[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40LioranBoard)](https://twitter.com/LioranBoard)
+#  ~~LioranBoard 2~~ SAMMI
+[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40SAMMI)](https://twitter.com/sammisolutions)
 [![Discord](https://img.shields.io/discord/699319482442711072.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/dXez8Zh)
 [![Patreon](https://img.shields.io/endpoint.svg?label=Patreon&url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dlb2devs%26type%3Dpatrons&style=flat)](https://patreon.com/lb2devs)
 
-This is the ONLY official LioranBoard 2 CE source. Please be careful downloading it from any other sources.
+This is the ONLY official ~~LioranBoard 2 CE~~ SAMMI source. Please be careful downloading it from any other sources.
 
-## What is LioranBoard?
-LioranBoard 2 is a fully customizable Stream Deck that lets your Twitch and YouTube Live audience control and interact with your stream.  
+## What is SAMMI?
+SAMMI is a fully customizable Stream Deck that lets your Twitch and YouTube Live audience control and interact with your stream.  
 It is fully compatible with [OBS Websocket](https://obsproject.com/forum/resources/obs-websocket-remote-control-obs-studio-from-websockets.466/), which can remotly control your [OBS Studio](https://obsproject.com/).  
-LioranBoard can listen to Twitch alerts and chat messages, send chat messages, and fully control your Twitch stream via the [Twitch API](https://dev.twitch.tv/docs/api/reference).  
+SAMMI can listen to Twitch alerts and chat messages, send chat messages, and fully control your Twitch stream via the [Twitch API](https://dev.twitch.tv/docs/api/reference).  
 It also works for YouTube streams too - it can listen to all chat events, send chat messages, and ban users, to name a few.
 
 ## Links
@@ -24,4 +24,4 @@ It also works for YouTube streams too - it can listen to all chat events, send c
 - Documentation: https://lioranboard.ca/docs2  
 ### Socials
 - Discord: https://discord.gg/dXez8Zh  
-- Twitter: https://twitter.com/LioranBoard
+- Twitter: https://twitter.com/sammisolutions
