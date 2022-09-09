@@ -3,7 +3,7 @@
 [![Discord](https://img.shields.io/discord/699319482442711072.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/dXez8Zh)
 [![Patreon](https://img.shields.io/endpoint.svg?label=Patreon&url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dlb2devs%26type%3Dpatrons&style=flat)](https://patreon.com/lb2devs)
 
-You can download SAMMI from our new [SAMMISolutions repository](https://github.com/SAMMISolutions/SAMMI-Official). 
+You can download SAMMI from our new [SAMMISolutions](https://github.com/SAMMISolutions/SAMMI-Official) repository. 
 
 ## What is SAMMI?
 SAMMI is a fully customizable Stream Deck that lets your Twitch and YouTube Live audience control and interact with your stream.
